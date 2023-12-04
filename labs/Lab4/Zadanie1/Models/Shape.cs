@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lab4.Shapes
+﻿
+namespace lab4_zad1
 {
     public class Shape
     {
@@ -15,6 +12,7 @@ namespace Lab4.Shapes
         {
             Console.WriteLine("Shape");
         }
-
     }
 }
+
+

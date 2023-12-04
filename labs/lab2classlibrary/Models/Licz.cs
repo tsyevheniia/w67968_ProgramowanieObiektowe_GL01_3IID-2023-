@@ -15,7 +15,7 @@ namespace lab2classlibrary.Models
         {
             Value += addvalue;
         }
-        public void Odejmowanie(int minusvalue)
+        public void Odejmi(int minusvalue)
         {
             Value -= minusvalue;
         }
@@ -31,16 +31,16 @@ namespace lab2classlibrary.Models
         {
             Liczby = liczby;
         }
-        public int Suma()
+        public void Suma()
         {
             int suma = 0;
             foreach (int liczba in Liczby)
             {
                 suma += liczba;
             }
-            return suma;
+            Console.WriteLine(suma);
         }
-        public int SumaPodziel3()
+        public void SumaPodziel3()
         {
             int suma = 0;
             foreach (int liczba in Liczby)
@@ -50,11 +50,11 @@ namespace lab2classlibrary.Models
                     suma += liczba;
                 }
             }
-            return suma;
+            Console.WriteLine( suma);
         }
-        public int IleElementow()
+        public void IleElementow()
         {
-            return (Liczby.Length);
+            Console.WriteLine(Liczby.Length);
         }
         public void ElementyTablicy()
         {
@@ -117,7 +117,7 @@ namespace lab2classlibrary.Models
                 }
 
                 double czas = dystans / (double)Prędkość;
-                Console.WriteLine($"Samochód porusza się i pokonuje odległość {dystans} km w ciągu {czas} godzin");
+                Console.WriteLine($"Samochód porusza się i pokonuje odległość {dystans} km w ciągu {Math.Round(czas, 2)} godzin");
                 return czas;
             }
             else
@@ -130,7 +130,7 @@ namespace lab2classlibrary.Models
         public void UstawTempomat(int ustalonaPrędkość)
         {
             Predkość = ustalonaPrędkość;
-            Console.WriteLine($"Tempomat ustawiony na prędkość {ustalonaPrędkość} km/h.");
+            Console.WriteLine($"Tempomat ustawiony na prędkość {Prędkość} km/h.");
         }
 
         public void ZwięszeniePrędkości()
@@ -138,7 +138,7 @@ namespace lab2classlibrary.Models
             if (Stan_silnika == StanSilnika.Uruchomiony)
             {
                 Predkość += 5;
-                Console.WriteLine("Zwiększanie prędkości o 5");
+                Console.WriteLine($"Zwiększanie prędkości o 5, prędkość równa się {Prędkość}");
             }
             else
             {
@@ -151,7 +151,7 @@ namespace lab2classlibrary.Models
             if (Stan_silnika == StanSilnika.Uruchomiony)
             {
                 Predkość -= 5;
-                Console.WriteLine("Zmniejszanie prędkości o 5");
+                Console.WriteLine($"Zmniejszanie prędkości o 5, prędkość równa się {Prędkość}");
             }
             else
             {
@@ -179,21 +179,22 @@ namespace lab2classlibrary.Models
             Stan_silnika = StanSilnika.Wyłączony;
             Console.WriteLine("Zatrzymanie pracy silnika");
         }
+       
     }
     public class Osoba
     {
         private string Imię;
         private string Nazwisko;
         private int Wiek;
-        private int Data_urodzenia;
+        private string Data_urodzenia;
         private string Płeć;
-        private int Numer_telefonu;
+        private string Numer_telefonu;
 
         private Samochód samochód;
 
         public string ImięINazwisko => $"{Imię} {Nazwisko}";
 
-        public Osoba(string imię, string nazwisko, int wiek, int data_urodzenia, string plec, int numer_telefonu)
+        public Osoba(string imię, string nazwisko, int wiek, string data_urodzenia, string plec, string numer_telefonu)
         {
             Imię = imię;
             Nazwisko = nazwisko;
@@ -217,11 +218,12 @@ namespace lab2classlibrary.Models
         {
             Console.WriteLine("Podaj nowę nazwisko:");
             Nazwisko = Console.ReadLine();
+            Console.WriteLine($"Osoba nazywa się: {ImięINazwisko}");
         }
         public void UstawSamochód(Samochód nowySamochód)
         {
             samochód = nowySamochód;
-            Console.WriteLine("Samochód został ustawiony.");
+            Console.WriteLine($"{ImięINazwisko} ma prawo własności na {samochód.Marka} {samochód.Model}");
         }
         public void InformacjaOSamochodzie()
         {
@@ -231,7 +233,8 @@ namespace lab2classlibrary.Models
             }
             else
             {
-                Console.WriteLine("Osoba ma samochód");
+              
+                Console.WriteLine($"{ImięINazwisko} ma samochód, informacja o nim:{samochód.Marka}, {samochód.Model}, {samochód.Rok_produkcji}");
             }
         }
     }

@@ -1,41 +1,41 @@
 ﻿using System;
-//using lab2classlibrary.Models;
 
 namespace Lab1
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int number;
 
             Console.WriteLine("Podaj liczbę:");
             number = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n");
 
             //zad1
             Console.WriteLine("Zad1:");
             Program.isEven(number);
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
             //zad2
             Console.WriteLine("Zad2:");
             Program.ShowEvenNumbers(number);
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
             //zad4
             Console.WriteLine("Zad4:");
             Program.Siłnia(number);
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
             //zad 5
             Console.WriteLine("Zad5: (Odgadaj liczbę (masz liczbę sprób):");
             Program.ŁosowaniaLiczb(number);
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
             //zad 6
             Console.WriteLine("Zad6: (Podaj liczbę do konvertowania):");
             Program.Converter(number);
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
             //zad3
             Console.WriteLine("Zad3:");
             Program.MenuSelection();
-            Console.WriteLine("\n\n");
+            Console.WriteLine("\n");
         }
 
         // Zadanie 1
@@ -43,11 +43,11 @@ namespace Lab1
         {
             if ((n % 2) == 0)
             {
-                Console.WriteLine(" liczba jest parzysta");
+                Console.WriteLine("liczba jest parzysta");
             }
             else
             {
-                Console.WriteLine(" liczba jest nieparzysta");
+                Console.WriteLine("liczba jest nieparzysta");
             };
 
         }

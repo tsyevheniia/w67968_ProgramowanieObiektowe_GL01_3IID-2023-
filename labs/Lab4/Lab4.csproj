@@ -2,7 +2,19 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Zadanie1\" />
+    <None Remove="Zadanie1\Models\" />
+    <None Remove="Zadanie2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Zadanie1\" />
+    <Folder Include="Zadanie1\Models\" />
+    <Folder Include="Zadanie2\" />
+  </ItemGroup>
 </Project>
