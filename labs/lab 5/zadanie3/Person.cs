@@ -19,7 +19,6 @@ namespace lab5.zadanie3
             DataUtworzenia = DateTime.Now;
         }
     }
-   
-}
 
+}
 
