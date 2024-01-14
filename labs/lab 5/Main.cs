@@ -1,4 +1,5 @@
-﻿using lab5.zadanie2;
+﻿using System;
+using lab5.zadanie2;
 using lab5.zadanie3;
 namespace lab5.zadanie1;
 
@@ -32,66 +33,94 @@ public class Program
         }
 
         Console.WriteLine(Account.Przychody);
-
         Console.WriteLine("Zadanie 3:");
-        var personRepository = new PersonRepository();
-        var bookRepository = new BookRepository();
-        var book1 = new Book(1, "Pride and Prejudice", "Jane Austen", 1813);
-        var person1 = new Person(1, "John", "Doe", 25);
-        var person3 = new Person(2, "John", "Doe", 27);
+        //for person repository
 
-        bookRepository.Create(book1);
-        personRepository.Create(person1);
-        personRepository.Create(person3);
-        
-        var updatedPerson = new Person(1, "Kristian", "Doe", 26);
-        personRepository.Update(updatedPerson);
+        var repository = new PersonRepository();
+        var person1 = new Person { Id = 1, Imię = "John", Nazwisko = "Watson", Wiek = 25 };
+        repository.Create(person1);
 
-        var allBooks = bookRepository.GetAll();
-        var allPeople = personRepository.GetAll();
 
-        Console.WriteLine("All Books:");
-        foreach (var book in allBooks)
+        Console.WriteLine("All persons:");
+        foreach (var person in repository.GetAll())
         {
-            Console.WriteLine($"ID: {book.Id}, Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
+            Console.WriteLine($"{person.Imię} {person.Nazwisko}, Age: {person.Wiek}");
         }
 
-        Console.WriteLine("\nAll People:");
-        foreach (var person in allPeople)
+        var updatedPerson = new Person { Id = 1, Imię = "John", Nazwisko = "Watson", Wiek = 26 };
+        repository.Update(updatedPerson);
+
+        Console.WriteLine("\nUpdated Information:");
+        var newperson = repository.Get(1);
+        Console.WriteLine($"{newperson.Imię} {newperson.Nazwisko}, Age: {newperson.Wiek}");
+
+        int personId = 1;
+        int bookId = 1;
+
+        var book1 = new Book { Id = 1, Tytuł = "The Catcher in the Rye", Autor = "J.D. Salinger", Rok = 1951 };
+        repository.AddBook(book1);
+        repository.BorrowBook(personId, bookId);
+
+        Console.WriteLine($"\nBorrowed books for {newperson.Imię} {newperson.Nazwisko}:");
+        foreach (var book in repository.GetBorrowedBooks(1))
         {
-            Console.WriteLine($"ID: {person.Id}, Name: {person.Imię} {person.Nazwisko}, Age: {person.Wiek}");
+            Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
+        }
+
+        Console.WriteLine($"\nUpdated borrowed books for {newperson.Imię} {newperson.Nazwisko}:");
+        foreach (var book in repository.GetBorrowedBooks(1))
+        {
+            Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
+        }
+
+        // for book repository
+        var repository1 = new BookRepository();
+        var book2 = new Book { Id = 1, Tytuł = "The Catcher in the Rye", Autor = "J.D. Salinger", Rok = 1951 };
+        repository1.Create(book2);
+
+        Console.WriteLine(" ");
+        Console.WriteLine("All books:");
+        foreach (var book in repository1.GetAll())
+        {
+            Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
+        }
+
+        Console.WriteLine("\nBooks by J.D. Salinger:");
+        foreach (var book in repository1.GetBooksByAuthor("J.D. Salinger"))
+        {
+            Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
         }
 
 
-        var bookToBorrow = new Book(3, "1984", "George Orwell", 1949);
-        personRepository.DodajKsiązkeDoListy(person1, bookToBorrow);
-
-
-        var borrowedBooks = personRepository.Getbooks(person1);
-
-        Console.WriteLine("\nBooks Borrowed by John Doe:");
-        foreach (var borrowedBook in borrowedBooks)
+        Console.WriteLine("\nBooks published in 1951:");
+        foreach (var book in repository1.GetBooksByYear(1951))
         {
-            Console.WriteLine($"ID: {borrowedBook.Id}, Title: {borrowedBook.Tytuł}, Author: {borrowedBook.Autor}, Year: {borrowedBook.Rok}");
+            Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
         }
 
-        var booksByAuthor = bookRepository.OtrzymajKsiazkeZaAutorem("Jane Austen");
 
-        Console.WriteLine("\nBooks by Jane Austen:");
-        foreach (var book in booksByAuthor)
+        var updatedBook = new Book { Id = 1, Tytuł = "The Catcher in the Rye", Autor = "J.D. Salinger", Rok = 1951 };
+        repository1.Update(updatedBook);
+
+
+        Console.WriteLine("\nUpdated information for the first book:");
+        var retrievedBook = repository1.Get(1);
+        Console.WriteLine($"Title: {retrievedBook.Tytuł}, Author: {retrievedBook.Autor}, Year: {retrievedBook.Rok}");
+
+
+        repository1.Delete(1);
+
+        Console.WriteLine("\nAll books after deletion:");
+        foreach (var book in repository1.GetAll())
         {
-            Console.WriteLine($"ID: {book.Id}, Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
-        }
-
-        var booksByYear = bookRepository.OtrzymajKsiazkeZaRokiem(1813);
-
-        Console.WriteLine("\nBooks published in 1813:");
-        foreach (var book in booksByYear)
-        {
-            Console.WriteLine($"ID: {book.Id}, Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
+            Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
         }
     }
 }
+
+
+
+
 
 
 

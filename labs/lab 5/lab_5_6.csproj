@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>lab_5</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="lab_6\" />
+    <None Remove="lab_5\" />
+    <None Remove="lab_5\zadanie1\" />
+    <None Remove="lab_5\zadanie2\" />
+    <None Remove="lab_5\zadanie3\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lab_6\" />
+    <Folder Include="lab_5\" />
+    <Folder Include="lab_5\zadanie1\" />
+    <Folder Include="lab_5\zadanie2\" />
+    <Folder Include="lab_5\zadanie3\" />
+  </ItemGroup>
+</Project>
