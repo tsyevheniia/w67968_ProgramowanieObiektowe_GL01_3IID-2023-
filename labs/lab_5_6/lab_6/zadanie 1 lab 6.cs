@@ -1,6 +1,4 @@
-﻿using static System.Reflection.Metadata.BlobBuilder;
-
-namespace lab5.zadanie3
+﻿namespace lab5.zadanie3
 {
     public class PersonRepository : IPersonRepository
     {
@@ -11,10 +9,10 @@ namespace lab5.zadanie3
         {
             people.Add(item);
         }
+
         public void Update(Person item)
         {
             var existingPerson = people.FirstOrDefault(person => person.Id == item.Id);
-
             if (existingPerson != null)
             {
                 existingPerson.Imię = item.Imię;
@@ -27,10 +25,12 @@ namespace lab5.zadanie3
         {
             return people;
         }
+
         public Person Get(int id)
         {
             return people.FirstOrDefault(person => person.Id == id);
         }
+
         public void Delete(int id)
         {
             var personToRemove = people.FirstOrDefault(person => person.Id == id);
@@ -40,11 +40,18 @@ namespace lab5.zadanie3
             }
         }
 
-        public List<Book> GetBorrowedBooks(int id)
+        public List<Book> GetBorrowedBooks(int personId)
         {
-            var person = people.FirstOrDefault(person => person.Id == id);
-            return person?.BorrowedBooks ?? new List<Book>();
+            var person = people.FirstOrDefault(p => p.Id == personId);
+
+            if (person == null || person.BorrowedBooks.Count == 0)
+            {
+                return new List<Book>();
+            }
+
+            return person.BorrowedBooks.ToList();
         }
+
         public void BorrowBook(int id, int bookId)
         {
             var person = people.FirstOrDefault(person => person.Id == id);
@@ -60,12 +67,7 @@ namespace lab5.zadanie3
         {
             books.Add(book);
         }
-
-
     }
-
-
-
 
     public class BookRepository : IBookRepository
     {

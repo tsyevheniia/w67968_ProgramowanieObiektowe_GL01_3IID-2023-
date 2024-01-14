@@ -54,21 +54,19 @@ public class Program
         var newperson = repository.Get(1);
         Console.WriteLine($"{newperson.Imię} {newperson.Nazwisko}, Age: {newperson.Wiek}");
 
-        int personId = 1;
-        int bookId = 1;
 
-        var book1 = new Book { Id = 1, Tytuł = "The Catcher in the Rye", Autor = "J.D. Salinger", Rok = 1951 };
+        var book1 = new Book { Id = 4, Tytuł = "The Catcher in the Rye", Autor = "J.D. Salinger", Rok = 1951 };
         repository.AddBook(book1);
-        repository.BorrowBook(personId, bookId);
+        repository.BorrowBook(person1.Id, book1.Id);
 
         Console.WriteLine($"\nBorrowed books for {newperson.Imię} {newperson.Nazwisko}:");
-        foreach (var book in repository.GetBorrowedBooks(1))
+        foreach (var book in repository.GetBorrowedBooks(person1.Id))
         {
             Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
         }
 
         Console.WriteLine($"\nUpdated borrowed books for {newperson.Imię} {newperson.Nazwisko}:");
-        foreach (var book in repository.GetBorrowedBooks(1))
+        foreach (var book in repository.GetBorrowedBooks(person1.Id))
         {
             Console.WriteLine($"Title: {book.Tytuł}, Author: {book.Autor}, Year: {book.Rok}");
         }
@@ -77,6 +75,7 @@ public class Program
         var repository1 = new BookRepository();
         var book2 = new Book { Id = 1, Tytuł = "The Catcher in the Rye", Autor = "J.D. Salinger", Rok = 1951 };
         repository1.Create(book2);
+        
 
         Console.WriteLine(" ");
         Console.WriteLine("All books:");
