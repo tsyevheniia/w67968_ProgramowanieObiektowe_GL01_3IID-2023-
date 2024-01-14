@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using lab_5.zadanie;
-
-
+﻿using lab5.zadanie3;
 namespace lab_7
 {
     public class Startup
@@ -23,6 +16,7 @@ namespace lab_7
             services.AddControllers();
 
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddSingleton<IPersonRepository, PersonRepository>();
         }
 
        
@@ -44,6 +38,9 @@ namespace lab_7
                 endpoints.MapControllers();
             });
         }
+
+
+
     }
 
 }

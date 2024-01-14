@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using lab5.zadanie3;
-
 namespace Lab_7.Controllers
 {
-    [Route("api/[controller]/[action]")]
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
@@ -25,6 +24,8 @@ namespace Lab_7.Controllers
         {
             _bookRepository.Delete(id);
         }
+
+
         [HttpGet]
         public List<Book> GetAll()
         {
@@ -44,15 +45,15 @@ namespace Lab_7.Controllers
         }
 
         [HttpGet]
-        public List<Book> GetBooksByAuthor(string author)
+        public List<Book> GetBooksByAuthor(string autor)
         {
-            return _bookRepository.GetBooksByAuthor(author);
+            return _bookRepository.GetBooksByAuthor(autor);
         }
 
         [HttpGet]
-        public List<Book> GetBooksByPublishYear(int year)
+        public List<Book> GetBooksByYear(int year)
         {
-            return _bookRepository.GetBooksByPublishYear(year);
+            return _bookRepository.GetBooksByYear(year);
         }
 
     }

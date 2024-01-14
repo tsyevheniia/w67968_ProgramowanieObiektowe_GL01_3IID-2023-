@@ -1,10 +1,9 @@
-﻿using lab5.zadanie3;
-using Microsoft.AspNetCore.Mvc;
-
+﻿using Microsoft.AspNetCore.Mvc;
+using lab5.zadanie3;
 namespace Lab7.Controllers
 {
-    [Route("api/[controller]/[action]")]
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class PersonController : ControllerBase
     {
         private readonly IPersonRepository _personRepository;
@@ -21,19 +20,19 @@ namespace Lab7.Controllers
         }
 
         [HttpPost]
-        public void BorrowBook(long id, int bookId)
+        public void BorrowBook( int id, int bookId)
         {
             _personRepository.BorrowBook(id, bookId);
         }
 
         [HttpGet]
-        public List<Book> GetBorrowedBook(long id)
+        public List<Book> GetBorrowedBook(int id)
         {
-            return _personRepository.GetBorrowedBook(id);
+            return _personRepository.GetBorrowedBooks(id);
         }
 
         [HttpGet]
-        public Person Get(long id)
+        public Person Get(int id)
         {
             return _personRepository.Get(id);
         }
@@ -56,5 +55,4 @@ namespace Lab7.Controllers
             _personRepository.Delete(id);
         }
     }
-
-
+}
