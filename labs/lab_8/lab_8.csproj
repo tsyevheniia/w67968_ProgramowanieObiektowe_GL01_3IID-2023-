@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lab_5_6\lab_5_6.csproj" />
+    <ProjectReference Include="..\lab_7\lab_7.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="FileBookRepository.css" />
+  </ItemGroup>
+</Project>
